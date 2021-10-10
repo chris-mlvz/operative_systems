@@ -5,11 +5,13 @@ use std::fs::File;
 use std::io::{BufRead, BufReader};
 
 fn main() {
-    let path = env::args().nth(1).expect("You need to pass a file");
+    let path = env::args()
+        .nth(1)
+        .expect("Error, You need to pass a file.txt like argument");
     let inverted =
-        RGB::get_inverted_colors(&path).expect("You need to pass numbers between: 0 - 255");
+        RGB::get_inverted_colors(&path).expect("Error, You need to pass numbers between: 0 - 255");
     for color in inverted {
-        println!("{}", color);
+        println!("{}\n", color);
     }
 }
 
@@ -54,7 +56,7 @@ impl fmt::Display for RGB {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "RGB: ({}, {}, {})\nHEX: ({:X}{:X}{:X})",
+            "RGB: ({}, {}, {})\nHEX: (0x{:X}{:X}{:X})",
             self.r, self.g, self.b, self.r, self.g, self.b
         )
     }
